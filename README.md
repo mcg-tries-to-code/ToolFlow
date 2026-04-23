@@ -6,6 +6,9 @@ It exists to solve an irritatingly common failure mode in agent systems: the age
 
 ToolFlow addresses that gap with a typed workflow model, a durable ledger, explicit approval boundaries, recovery semantics, and now live progress updates for long-running work.
 
+## Get it from ClawHub.ai:
+You can get this from ClawHub by going here:  https://clawhub.ai/mcg-tries-to-code/toolflow-openclaw-operator
+
 ## Why ToolFlow exists
 
 ToolFlow was built to make long-running agent execution behave more like a disciplined job system and less like hopeful improvisation.
