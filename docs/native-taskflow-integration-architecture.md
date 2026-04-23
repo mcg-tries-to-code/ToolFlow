@@ -198,7 +198,7 @@ Examples:
 {
   "kind": "reply",
   "channel": "telegram",
-  "threadKey": "telegram:8221971426",
+  "threadKey": "telegram:<operator-thread>",
   "reason": "waiting for human decision on architecture tradeoff"
 }
 ```

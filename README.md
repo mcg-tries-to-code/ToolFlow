@@ -98,9 +98,11 @@ TOOLFLOW_ENABLE_ELEVATED=1 TOOLFLOW_ELEVATED_ALLOW=node,git node packages/runtim
 - `packages/elevated` - elevated bridge/cell package
 - `packages/runtime` - compiler, ledger, scheduler, CLI
 - `packages/plugin` - thin local runtime-backed plugin surface
+- `packages/openclaw-skill` - OpenClaw-facing operator wrapper skill for ToolFlow
+- `packages/authoring-skill` - workflow authoring layer for ToolFlow
 
 ## Inspiration and credit
 
 ToolFlow was materially inspired by the Hermes agent work from **Nous Research** and the broader idea that an agent should be able to persist, recover, and grow beyond a single turn. ToolFlow is not a copy of Hermes. It is a separate implementation shaped around bounded workflows, durable control-plane state, approval semantics, and explicit operator governance.
 
-See `docs/toolflow-overview.md` and `docs/authorship-and-attribution.md` for the publication-facing overview and attribution notes.
+See `docs/toolflow-overview.md`, `docs/openclaw-integration.md`, and `docs/authorship-and-attribution.md` for the publication-facing overview, OpenClaw integration model, and attribution notes.

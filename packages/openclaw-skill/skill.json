@@ -1,0 +1,5 @@
+{
+  "name": "toolflow-openclaw-operator",
+  "version": "0.0.0",
+  "description": "OpenClaw-facing skill wrapper for operating ToolFlow workflows through the ToolFlow plugin/runtime surface."
+}
