@@ -67,11 +67,17 @@ Elevated development actions:
 - separate elevated development signing key
 - `exec_command` additionally requires `TOOLFLOW_ELEVATED_ALLOW=<comma-separated binaries>`
 
+## Deployment posture
+
+- suitable today for single-operator and trusted local use
+- not yet intended as a turnkey public multi-user runtime
+- shared-user or public-facing deployments require additional ownership and isolation controls in the host platform
+
 ## Long-run progress behavior
 
 - direct CLI runs default to no live chat updates unless progress env vars are enabled
-- plugin-backed ToolFlow runs default to live progress wakeups after 5 minutes, then every 5 minutes thereafter
-- default plugin hook: `openclaw system event --text "$TOOLFLOW_PROGRESS_TEXT" --mode now`
+- plugin-backed ToolFlow runs default to structured `stderr` progress events after 5 minutes, then every 5 minutes thereafter
+- live user-facing progress updates are available, but should be enabled explicitly by the operator through `ToolflowPluginConfig.progressUpdates`
 - override or disable through `ToolflowPluginConfig.progressUpdates`
 
 ## Quick commands
@@ -105,4 +111,4 @@ TOOLFLOW_ENABLE_ELEVATED=1 TOOLFLOW_ELEVATED_ALLOW=node,git node packages/runtim
 
 ToolFlow was materially inspired by the Hermes agent work from **Nous Research** and the broader idea that an agent should be able to persist, recover, and grow beyond a single turn. ToolFlow is not a copy of Hermes. It is a separate implementation shaped around bounded workflows, durable control-plane state, approval semantics, and explicit operator governance.
 
-See `docs/toolflow-overview.md`, `docs/openclaw-integration.md`, and `docs/authorship-and-attribution.md` for the publication-facing overview, OpenClaw integration model, and attribution notes.
+See `docs/toolflow-overview.md`, `docs/openclaw-integration.md`, `docs/security-assessment-2026-04-23.md`, and `docs/authorship-and-attribution.md` for the publication-facing overview, OpenClaw integration model, security judgment, and attribution notes.

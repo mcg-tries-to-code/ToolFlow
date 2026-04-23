@@ -23,6 +23,6 @@ function normalizeStep(step: WorkflowStepSource, seen: Set<string>): WorkflowSte
 export function inferCell(action: SafeActionFamily): SafeCellId {
   if (action === "read_file" || action === "list_files") return "read";
   if (action === "research_note") return "research";
-  if (action === "session_note" || action === "health_downtrend_monitor" || action === "workspace_governance_monthly") return "session";
+  if (action === "session_note") return "session";
   return "elevated";
 }

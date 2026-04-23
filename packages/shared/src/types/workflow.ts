@@ -1,7 +1,7 @@
 import type { Hash } from "../hashing";
 
 export type SafeCellId = "read" | "research" | "session" | "elevated";
-export type SafeActionFamily = "read_file" | "list_files" | "research_note" | "session_note" | "health_downtrend_monitor" | "workspace_governance_monthly" | "exec_command" | "apply_patch";
+export type SafeActionFamily = "read_file" | "list_files" | "research_note" | "session_note" | "exec_command" | "apply_patch";
 export type ReplayClass = "read_only" | "idempotent" | "review_before_replay";
 export type RunState = "created" | "compiled" | "ready" | "running" | "awaiting_approval" | "quarantined" | "cancelled" | "succeeded" | "failed" | "rejected";
 export type StepState = "pending" | "awaiting_approval" | "grant_issued" | "running" | "quarantined" | "cancelled" | "succeeded" | "failed" | "skipped";

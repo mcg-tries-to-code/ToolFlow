@@ -8,7 +8,7 @@ export function compilePolicyArtifact(graph: CompiledGraph, config: RuntimeConfi
   const allowedActionsByCell: PolicyArtifact["allowedActionsByCell"] = {
     read: ["read_file", "list_files"],
     research: ["research_note"],
-    session: ["session_note", "health_downtrend_monitor", "workspace_governance_monthly"],
+    session: ["session_note"],
     elevated: elevated && config.enableElevated ? ["exec_command", "apply_patch"] : []
   };
   const withoutHash = {

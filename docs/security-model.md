@@ -25,12 +25,17 @@ It is not a generic tool invocation surface.
 Binding policy truth is the compiled `policy-artifact.json`, not workflow source hints.
 Bridges reject mismatched policy hashes, payload hashes, cell bindings, action bindings, expired grants, invalid signatures, and already-consumed grants.
 
-Current exclusions:
-- no elevated actions
-- no shell execution
-- no patch application
-- no outbound messaging
+Current safe-profile exclusions for public distribution posture:
+- no shell execution in ordinary lanes
+- no session-lane script launchers
+- no outbound messaging by default
 - no generic `/tools/invoke` ABI for ordinary execution
+
+Elevated actions exist, but remain:
+- disabled by default
+- approval-bound per step
+- explicitly allowlisted
+- local-development oriented unless a stronger operator security model is added
 
 Recovery is limited to ledger inspection in the MVP.
 Crash replay fixtures are required before elevated work begins.

@@ -8,7 +8,7 @@ export const RECEIPT_SCHEMA_VERSION = "toolflow.receipt/v1" as const;
 export const RUN_MANIFEST_SCHEMA_VERSION = "toolflow.run-manifest/v1" as const;
 
 export const SAFE_PROFILE_CELLS = ["read", "research", "session"] as const;
-export const SAFE_PROFILE_ACTIONS = ["read_file", "list_files", "research_note", "session_note", "health_downtrend_monitor", "workspace_governance_monthly"] as const;
+export const SAFE_PROFILE_ACTIONS = ["read_file", "list_files", "research_note", "session_note"] as const;
 export const ELEVATED_PROFILE_CELLS = ["elevated"] as const;
 export const ELEVATED_PROFILE_ACTIONS = ["exec_command", "apply_patch"] as const;
 export const TOOLFLOW_CELLS = [...SAFE_PROFILE_CELLS, ...ELEVATED_PROFILE_CELLS] as const;

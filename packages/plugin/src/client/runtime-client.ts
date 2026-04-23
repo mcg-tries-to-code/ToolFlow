@@ -11,8 +11,7 @@ export function createRuntimeClient(config: ToolflowPluginConfig = {}) {
       enabled: true,
       longRunThresholdMs: 5 * 60 * 1000,
       intervalMs: 5 * 60 * 1000,
-      sink: "command" as const,
-      command: "openclaw system event --text \"$TOOLFLOW_PROGRESS_TEXT\" --mode now",
+      sink: "stderr" as const,
       ...config.progressUpdates
     }
   };

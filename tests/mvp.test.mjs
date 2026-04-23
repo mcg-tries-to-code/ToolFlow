@@ -272,25 +272,10 @@ test("approval bound to old payload cannot authorize changed payload", () => {
   assert.match(failed.stderr || failed.stdout, /approval payload binding mismatch/i);
 });
 
-test("health downtrend monitor runs through the bounded session lane", () => {
+test("health downtrend monitor is rejected from the public action set", () => {
   const ledger = mkdtempSync(join(tmpdir(), "toolflow-test-"));
   const workdir = mkdtempSync(join(tmpdir(), "toolflow-health-"));
-  const scriptPath = join(workdir, "fake_health_monitor.py");
-  const statePath = join(workdir, "state.json");
   const workflowPath = join(workdir, "health-workflow.json");
-
-  writeFileSync(scriptPath, [
-    "#!/usr/bin/env python3",
-    "import argparse, json, datetime",
-    "p=argparse.ArgumentParser()",
-    "p.add_argument('--sheet-id')",
-    "p.add_argument('--range', dest='sheet_range')",
-    "p.add_argument('--state-path')",
-    "p.add_argument('--target')",
-    "p.add_argument('--dry-run', action='store_true')",
-    "args=p.parse_args()",
-    "print(json.dumps({'checkedAt': datetime.datetime.now().isoformat(), 'sent': False, 'dryRun': args.dry_run, 'target': args.target or '', 'statePath': args.state_path}))"
-  ].join("\n"));
 
   writeFileSync(workflowPath, JSON.stringify({
     schemaVersion: "toolflow.workflow/v1",
@@ -299,44 +284,19 @@ test("health downtrend monitor runs through the bounded session lane", () => {
       {
         id: "health_downtrend_monitor",
         action: "health_downtrend_monitor",
-        args: {
-          workspaceRoot: workdir,
-          scriptPath,
-          statePath,
-          target: "telegram:test",
-          pythonBin: "python3",
-          dryRun: true
-        }
+        args: { dryRun: true }
       }
     ]
   }, null, 2));
 
-  const manifest = runCli(["run", workflowPath], ledger);
-  assert.equal(manifest.state, "succeeded");
-  const output = JSON.parse(readFileSync(manifest.steps.health_downtrend_monitor.outputPath, "utf8"));
-  assert.equal(output.output.mode, "health_downtrend_monitor");
-  assert.equal(output.output.parsed.dryRun, true);
-  assert.equal(output.output.parsed.target, "telegram:test");
+  const failed = runCliFailure(["run", workflowPath], ledger);
+  assert.match(failed.stderr || failed.stdout, /Action "health_downtrend_monitor" is not supported by ToolFlow/i);
 });
 
-test("workspace governance monthly pass runs through the bounded session lane", () => {
+test("workspace governance monthly is rejected from the public action set", () => {
   const ledger = mkdtempSync(join(tmpdir(), "toolflow-test-"));
   const workdir = mkdtempSync(join(tmpdir(), "toolflow-governance-"));
-  const scriptPath = join(workdir, "fake_workspace_governance.sh");
   const workflowPath = join(workdir, "workspace-governance-workflow.json");
-  const reportsDir = join(workdir, "reports");
-  const tmpDir = join(workdir, "tmp", "workspace-governance");
-
-  mkdirSync(reportsDir, { recursive: true });
-  mkdirSync(tmpDir, { recursive: true });
-  writeFileSync(scriptPath, [
-    "#!/bin/zsh",
-    "set -euo pipefail",
-    `mkdir -p ${JSON.stringify(reportsDir)} ${JSON.stringify(tmpDir)}`,
-    `print '# Fake Governance Report' > ${JSON.stringify(join(reportsDir, 'workspace-governance-scheduled-test.md'))}`,
-    `print '{\"ok\":true}' > ${JSON.stringify(join(tmpDir, 'inventory.json'))}`
-  ].join("\n"));
-  spawnSync("chmod", ["+x", scriptPath]);
 
   writeFileSync(workflowPath, JSON.stringify({
     schemaVersion: "toolflow.workflow/v1",
@@ -345,21 +305,13 @@ test("workspace governance monthly pass runs through the bounded session lane", 
       {
         id: "workspace_governance_monthly",
         action: "workspace_governance_monthly",
-        args: {
-          workspaceRoot: workdir,
-          scriptPath,
-          shellBin: "/bin/zsh"
-        }
+        args: {}
       }
     ]
   }, null, 2));
 
-  const manifest = runCli(["run", workflowPath], ledger);
-  assert.equal(manifest.state, "succeeded");
-  const output = JSON.parse(readFileSync(manifest.steps.workspace_governance_monthly.outputPath, "utf8"));
-  assert.equal(output.output.mode, "workspace_governance_monthly");
-  assert.equal(existsSync(join(reportsDir, "workspace-governance-scheduled-test.md")), true);
-  assert.equal(existsSync(join(tmpDir, "inventory.json")), true);
+  const failed = runCliFailure(["run", workflowPath], ledger);
+  assert.match(failed.stderr || failed.stdout, /Action "workspace_governance_monthly" is not supported by ToolFlow/i);
 });
 
 test("progress updates emit structured stderr events for long-running runs", () => {
