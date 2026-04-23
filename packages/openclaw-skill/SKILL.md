@@ -8,6 +8,23 @@ This is the OpenClaw-facing operator wrapper for ToolFlow.
 
 It is meant to complement the ToolFlow runtime and plugin surfaces by teaching the agent when a job should be expressed as a bounded workflow with durable state, approvals, recovery, and progress visibility.
 
+## Quick install
+
+Installing this skill from ClawHub does **not** by itself install the ToolFlow runtime.
+
+Recommended setup:
+
+```sh
+git clone https://github.com/mcg-tries-to-code/ToolFlow.git ~/.openclaw/toolflow
+cd ~/.openclaw/toolflow
+npm install && npm run build
+node packages/runtime/dist/main.js doctor
+node packages/runtime/dist/main.js validate packages/examples/workflows/safe-profile-mvp.json
+```
+
+Canonical runtime repository:
+- <https://github.com/mcg-tries-to-code/ToolFlow>
+
 ## When to use ToolFlow
 
 Prefer ToolFlow when the job benefits from one or more of the following:

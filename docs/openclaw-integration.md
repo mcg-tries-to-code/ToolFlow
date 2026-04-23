@@ -21,3 +21,19 @@ Without the skill, the plugin is just a blunt instrument with a respectable voca
 - authoring skill for workflow construction: `packages/authoring-skill`
 
 This keeps the runtime, integration, and operator behavior related but not confused.
+
+## Current install posture
+
+Today the ClawHub skill is an operator wrapper, not a full runtime bundle.
+
+That means:
+- installing `toolflow-openclaw-operator` teaches the agent when to use ToolFlow
+- users must still clone/build the ToolFlow runtime from GitHub
+
+Current quick install path:
+
+```sh
+git clone https://github.com/mcg-tries-to-code/ToolFlow.git ~/.openclaw/toolflow
+cd ~/.openclaw/toolflow
+npm install && npm run build
+```
