@@ -1,40 +1,56 @@
 # ToolFlow OpenClaw Operator
 
-Use this skill when work should be framed as a ToolFlow job rather than handled as an improvised one-off turn.
+Use this skill when work should be run as a ToolFlow job rather than improvised inside a single agent turn.
 
-## Purpose
+## What this skill is
 
-This skill is the OpenClaw-facing wrapper for ToolFlow.
+This is the OpenClaw-facing operator wrapper for ToolFlow.
 
-It exists to pair:
-- the **ToolFlow plugin/runtime surface**, which can submit, inspect, reconcile, and cancel runs
-- the **ToolFlow authoring layer**, which helps write bounded workflows intentionally
+It is meant to complement the ToolFlow runtime and plugin surfaces by teaching the agent when a job should be expressed as a bounded workflow with durable state, approvals, recovery, and progress visibility.
 
-## When to use it
+## When to use ToolFlow
 
-Use ToolFlow through this skill when the job benefits from one or more of the following:
+Prefer ToolFlow when the job benefits from one or more of the following:
 - a durable run id
-- a typed step graph
+- an explicit step graph
 - dry-run classification before execution
-- explicit approvals for elevated steps
+- exact approval boundaries for elevated work
 - receipts, manifests, and recovery
-- user-visible progress updates for longer-running work
+- user-visible progress updates during longer execution
 
-## Basic operator loop
+Typical examples:
+- multi-step diagnostics
+- bounded automation runs
+- workflows that may pause for approval and resume later
+- jobs where recovery after interruption matters
+- longer builds where the user should receive progress updates
 
-1. Describe the workflow in a narrow, typed way.
-2. Dry-run it first when feasible.
-3. Run it through the ToolFlow plugin/runtime surface.
-4. If a step requires approval, approve the exact step and resume.
-5. If interrupted, recover before replay.
+Do not bother when the work is a trivial one-off read or edit.
 
-## Boundaries
+## Operator loop
 
-- Prefer typed safe lanes over elevated lanes.
+1. Frame the work as a narrow, typed workflow.
+2. Dry-run it when feasible.
+3. Submit the workflow through ToolFlow.
+4. Inspect manifest state rather than guessing from conversation.
+5. If a step requires approval, approve the exact step and resume.
+6. If interrupted, recover before replay.
+
+## Required habits
+
+- Prefer safe typed lanes before elevated lanes.
+- Keep workflows small, explicit, and reviewable.
 - Treat the ToolFlow ledger as canonical truth.
-- Do not widen scope just because a workflow language exists.
+- Do not silently widen workflow scope during execution.
 - Keep long-running work observable rather than silent.
 
-## Packaging note
+## Important packaging note
 
-This skill is intended to be distributed alongside the ToolFlow plugin/runtime integration rather than pretending the skill alone is the whole system.
+This skill is not the whole ToolFlow system by itself.
+
+It is intended to be used alongside:
+- the ToolFlow runtime/plugin integration
+- the ToolFlow authoring layer when workflow construction help is needed
+
+Canonical source repository:
+- <https://github.com/mcg-tries-to-code/ToolFlow>
