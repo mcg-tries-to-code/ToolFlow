@@ -12,6 +12,7 @@ export * from "./tools/toolflow_receipts";
 export * from "./tools/toolflow_status";
 export * from "./tools/toolflow_submit";
 export * from "./tools/toolflow_templates";
+import { toolflow_templates } from "./tools/toolflow_templates";
 
 type Api = any;
 
@@ -165,7 +166,7 @@ export default function register(api: Api) {
       parameters: { type: "object", properties: {}, required: [] },
       async execute() {
         try {
-          return textResult({ templates: ["packages/examples/workflows/safe-profile-mvp.json"] });
+          return textResult(toolflow_templates());
         } catch (error) {
           return errorResult((error as Error).message);
         }

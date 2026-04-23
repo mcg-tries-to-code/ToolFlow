@@ -22,9 +22,10 @@ Then verify:
 ```
 
 What the installer does:
-- links the bundled ToolFlow plugin into OpenClaw with `openclaw plugins install --link --force`
+- links the bundled ToolFlow plugin into OpenClaw with `openclaw plugins install --link`
 - keeps the runtime and plugin payload together inside the installed skill folder
 - runs a ToolFlow doctor check
+- works on plain Bash hosts, including clean Ubuntu VPS installs
 
 Repository:
 - <https://github.com/mcg-tries-to-code/ToolFlow>

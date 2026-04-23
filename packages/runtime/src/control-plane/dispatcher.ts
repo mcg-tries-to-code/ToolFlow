@@ -1,5 +1,5 @@
 import type { BridgeHandler, BridgeRequest, CompiledStep, PolicyArtifact, Receipt, StepGrant } from "@toolflow/shared";
-import { ElevatedBridge, elevatedBridgeHandler } from "../../../elevated/dist/main";
+import { ElevatedBridge, elevatedBridgeHandler } from "@toolflow/elevated";
 import type { RuntimeKey } from "../crypto/keyring";
 import type { LedgerStore } from "../ledger/store";
 import { SameProcessBridge } from "../bridges/base/bridge-server";

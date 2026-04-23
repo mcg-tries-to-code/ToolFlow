@@ -1,10 +1,14 @@
-import { approveRunStep, cancelRun, controllerStatus, createControllerFlow, createLedger, dryRun, getRunReceipts, getRunStatus, inspectRun, launchControllerWorkflow, listControllerFlows, readControllerFlow, readTaskflowMirror, recoverRun, reconcileControllerFlow, resumeWorkflow, runWorkflow, taskflowMirrorStatus, updateControllerFlow } from "../../../runtime/dist/index";
+import { resolve } from "node:path";
+import { approveRunStep, cancelRun, controllerStatus, createControllerFlow, createLedger, dryRun, getRunReceipts, getRunStatus, inspectRun, launchControllerWorkflow, listControllerFlows, readControllerFlow, readTaskflowMirror, recoverRun, reconcileControllerFlow, resumeWorkflow, runWorkflow, taskflowMirrorStatus, updateControllerFlow } from "@toolflow/runtime";
 import type { ToolflowPluginConfig } from "../config-schema";
+
+const defaultLedgerRoot = resolve(__dirname, "../../data/ledger");
+const defaultTaskflowMirrorRoot = resolve(__dirname, "../../data/taskflow-mirror");
 
 export function createRuntimeClient(config: ToolflowPluginConfig = {}) {
   const runtimeConfig = {
-    ledgerRoot: config.ledgerRoot,
-    taskflowMirrorRoot: config.taskflowMirrorRoot,
+    ledgerRoot: config.ledgerRoot ?? defaultLedgerRoot,
+    taskflowMirrorRoot: config.taskflowMirrorRoot ?? defaultTaskflowMirrorRoot,
     enableElevated: config.enableElevated,
     elevatedAllowedCommands: config.elevatedAllowedCommands,
     progressUpdates: {

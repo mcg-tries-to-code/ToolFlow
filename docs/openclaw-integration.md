@@ -29,6 +29,7 @@ The ClawHub package now ships as a bundled installer skill.
 That means:
 - installing `toolflow-openclaw-operator` provides the operator skill plus a bundled local plugin/runtime payload
 - users can install the ToolFlow plugin from the installed skill folder with the included installer script
+- the bundled installer and verifier are Bash-portable and have been smoke-tested on a clean Ubuntu VPS
 - the canonical GitHub repository remains the source of truth for source updates and documentation
 
 Current quick install path after ClawHub install:

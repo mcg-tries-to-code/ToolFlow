@@ -1,11 +1,9 @@
 # ToolFlow OpenClaw Bundle
 
-This bundle is packaged inside the ClawHub skill so OpenClaw users can install ToolFlow with a local link-based plugin install instead of manually assembling the runtime.
+This bundle is generated for the ClawHub skill and contains a self-contained OpenClaw plugin package.
 
 Layout:
-- `packages/plugin` - OpenClaw plugin entry and manifest
-- `packages/runtime` - ToolFlow runtime bundle
-- `packages/shared` - shared contracts bundle
-- `packages/elevated` - elevated lane bundle
-- `packages/examples` - verification workflows
-- `node_modules/@toolflow/*` - local package shims for runtime resolution
+- `plugin/` - installable OpenClaw plugin package
+  - `dist/entry.js` - bundled OpenClaw extension entry
+  - `dist/runtime-cli.js` - bundled ToolFlow CLI for doctor/validate checks
+  - `examples/workflows/` - packaged example workflows

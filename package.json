@@ -16,12 +16,13 @@
     "dev:start": "node scripts/dev-start.ts",
     "dev:smoke": "npm run build && node scripts/dev-smoke.ts",
     "release:manifest": "npm run build && node scripts/package-release.ts",
-    "bundle:openclaw-skill": "./scripts/package-openclaw-skill-bundle.sh",
+    "bundle:openclaw-skill": "npm run build && ./scripts/package-openclaw-skill-bundle.sh",
     "test": "npm run build && node --test tests/*.test.mjs",
     "lint": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "esbuild": "^0.25.11",
     "typescript": "^6.0.3"
   }
 }
