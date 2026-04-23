@@ -24,16 +24,16 @@ This keeps the runtime, integration, and operator behavior related but not confu
 
 ## Current install posture
 
-Today the ClawHub skill is an operator wrapper, not a full runtime bundle.
+The ClawHub package now ships as a bundled installer skill.
 
 That means:
-- installing `toolflow-openclaw-operator` teaches the agent when to use ToolFlow
-- users must still clone/build the ToolFlow runtime from GitHub
+- installing `toolflow-openclaw-operator` provides the operator skill plus a bundled local plugin/runtime payload
+- users can install the ToolFlow plugin from the installed skill folder with the included installer script
+- the canonical GitHub repository remains the source of truth for source updates and documentation
 
-Current quick install path:
+Current quick install path after ClawHub install:
 
 ```sh
-git clone https://github.com/mcg-tries-to-code/ToolFlow.git ~/.openclaw/toolflow
-cd ~/.openclaw/toolflow
-npm install && npm run build
+./scripts/install-toolflow-openclaw.sh
+./scripts/verify-toolflow-openclaw.sh
 ```

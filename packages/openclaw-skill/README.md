@@ -1,28 +1,30 @@
 # ToolFlow OpenClaw Operator
 
-ClawHub skill wrapper for operating ToolFlow from within OpenClaw.
+Bundled ClawHub installer for operating ToolFlow from within OpenClaw.
 
-This skill helps the agent decide when work should be handled as a ToolFlow job instead of improvised in a single turn.
+This package now includes:
+- the OpenClaw-facing operator skill
+- a bundled local ToolFlow plugin/runtime payload
+- installer and verification scripts
 
-## Quick install
+## Quick install after ClawHub install
 
-Installing this skill alone does **not** install the ToolFlow runtime.
-
-To install the runtime alongside this skill:
-
-```sh
-git clone https://github.com/mcg-tries-to-code/ToolFlow.git ~/.openclaw/toolflow
-cd ~/.openclaw/toolflow
-npm install && npm run build
-```
-
-Then verify the local runtime:
+From the installed skill folder, run:
 
 ```sh
-cd ~/.openclaw/toolflow
-node packages/runtime/dist/main.js doctor
-node packages/runtime/dist/main.js validate packages/examples/workflows/safe-profile-mvp.json
+./scripts/install-toolflow-openclaw.sh
 ```
+
+Then verify:
+
+```sh
+./scripts/verify-toolflow-openclaw.sh
+```
+
+What the installer does:
+- links the bundled ToolFlow plugin into OpenClaw with `openclaw plugins install --link --force`
+- keeps the runtime and plugin payload together inside the installed skill folder
+- runs a ToolFlow doctor check
 
 Repository:
 - <https://github.com/mcg-tries-to-code/ToolFlow>

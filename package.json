@@ -16,6 +16,7 @@
     "dev:start": "node scripts/dev-start.ts",
     "dev:smoke": "npm run build && node scripts/dev-smoke.ts",
     "release:manifest": "npm run build && node scripts/package-release.ts",
+    "bundle:openclaw-skill": "./scripts/package-openclaw-skill-bundle.sh",
     "test": "npm run build && node --test tests/*.test.mjs",
     "lint": "npm run build"
   },

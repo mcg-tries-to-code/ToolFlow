@@ -10,17 +10,16 @@ It is meant to complement the ToolFlow runtime and plugin surfaces by teaching t
 
 ## Quick install
 
-Installing this skill from ClawHub does **not** by itself install the ToolFlow runtime.
+This package now ships with a bundled local ToolFlow plugin/runtime payload.
 
-Recommended setup:
+After installing the skill from ClawHub, run from the installed skill folder:
 
 ```sh
-git clone https://github.com/mcg-tries-to-code/ToolFlow.git ~/.openclaw/toolflow
-cd ~/.openclaw/toolflow
-npm install && npm run build
-node packages/runtime/dist/main.js doctor
-node packages/runtime/dist/main.js validate packages/examples/workflows/safe-profile-mvp.json
+./scripts/install-toolflow-openclaw.sh
+./scripts/verify-toolflow-openclaw.sh
 ```
+
+The installer links the bundled ToolFlow plugin into OpenClaw locally, using the payload included with this skill package.
 
 Canonical runtime repository:
 - <https://github.com/mcg-tries-to-code/ToolFlow>
@@ -63,11 +62,11 @@ Do not bother when the work is a trivial one-off read or edit.
 
 ## Important packaging note
 
-This skill is not the whole ToolFlow system by itself.
+This skill now bundles the local ToolFlow plugin/runtime payload needed for OpenClaw installation.
 
-It is intended to be used alongside:
-- the ToolFlow runtime/plugin integration
+It still pairs best with:
 - the ToolFlow authoring layer when workflow construction help is needed
+- the canonical ToolFlow repository for source, updates, and documentation
 
 Canonical source repository:
 - <https://github.com/mcg-tries-to-code/ToolFlow>
