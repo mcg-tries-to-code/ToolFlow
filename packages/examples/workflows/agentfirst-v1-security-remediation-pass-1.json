@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "agentfirst-v1-security-remediation-pass-1",
+  "description": "Launch record for AgentFirst V1 security remediation pass 1, closing the highest-risk trust-boundary and retention findings from the April 22 audit.",
+  "inputs": {
+    "topic": "AgentFirst V1 security remediation pass 1"
+  },
+  "steps": [
+    {
+      "id": "read_master_plan",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/v1-toolflow-master-plan.md"
+      }
+    },
+    {
+      "id": "read_remediation_package",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-security-remediation-pass-1.md"
+      }
+    },
+    {
+      "id": "read_chunk11_package",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-chunk11-integration-acceptance.md"
+      }
+    },
+    {
+      "id": "security_remediation_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_master_plan",
+        "read_remediation_package",
+        "read_chunk11_package"
+      ],
+      "args": {
+        "query": "AgentFirst V1 security remediation pass 1 package, deliverables, and validation expectations",
+        "sources": [
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/v1-toolflow-master-plan.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-security-remediation-pass-1.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-chunk11-integration-acceptance.md"
+        ]
+      }
+    },
+    {
+      "id": "security_remediation_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "security_remediation_research_note"
+      ],
+      "args": {
+        "prompt": "Record that AgentFirst V1 security remediation pass 1 is now the active bounded hardening package, focused on challenge verification, enrollment approval hardening, pre-trust retention minimization, outbound unsent-content minimization, validation, and a post-patch audit update plus Google Chat channel judgment."
+      }
+    }
+  ]
+}

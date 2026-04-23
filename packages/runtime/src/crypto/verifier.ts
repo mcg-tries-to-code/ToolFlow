@@ -1,0 +1,1 @@
+export { verifyObject } from "./signer";

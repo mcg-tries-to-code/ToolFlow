@@ -1,0 +1,15 @@
+{
+  "name": "@toolflow/elevated",
+  "version": "0.0.0",
+  "type": "commonjs",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@toolflow/shared": "file:../shared"
+  }
+}

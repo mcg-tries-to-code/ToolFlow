@@ -1,0 +1,26 @@
+{
+  "name": "toolflow-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "ToolFlow, a bounded workflow runtime for long-running agent execution.",
+  "author": "Matthew Gwinn",
+  "packageManager": "npm@11",
+  "workspaces": [
+    "packages/shared",
+    "packages/elevated",
+    "packages/runtime",
+    "packages/plugin"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=@toolflow/shared && npm run build --workspace=@toolflow/elevated && npm run build --workspace=@toolflow/runtime && npm run build --workspace=@toolflow/plugin",
+    "dev:start": "node scripts/dev-start.ts",
+    "dev:smoke": "npm run build && node scripts/dev-smoke.ts",
+    "release:manifest": "npm run build && node scripts/package-release.ts",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "lint": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
+  }
+}

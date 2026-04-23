@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "ai-robotics-report-kickoff",
+  "description": "Kickoff execution record for the AI robotics report job.",
+  "steps": [
+    {
+      "id": "read_report_brief",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/tmp/reports/ai-robotics-report-brief.md"
+      }
+    },
+    {
+      "id": "report_scope_note",
+      "action": "session_note",
+      "dependsOn": [
+        "read_report_brief"
+      ],
+      "args": {
+        "prompt": "Record the report scope: a comprehensive, technically serious PDF on AI in robotics for technical leadership, engineering management, and robotics engineers, contrasting AI and traditional control, including precision motion control, leaders, deployable versus future-looking capability, and real-time inference constraints."
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+node_modules/
+data/
+dist-release/
+coverage/
+.env
+*.log
+packages/examples/workflows/agentfirst-*.json
+packages/examples/workflows/health-downtrend-monitor.json
+packages/examples/workflows/workspace-governance-monthly.json
+packages/examples/workflows/ai-robotics-report-kickoff.json

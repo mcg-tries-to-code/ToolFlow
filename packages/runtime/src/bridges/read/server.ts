@@ -1,0 +1,1 @@
+export { readBridgeHandler } from "./handlers";

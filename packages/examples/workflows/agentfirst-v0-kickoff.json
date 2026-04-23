@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "agentfirst-v0-kickoff",
+  "description": "Kickoff execution record for AgentFirst v0 implementation planning and staged build orchestration.",
+  "inputs": {
+    "topic": "AgentFirst v0 execution plan"
+  },
+  "steps": [
+    {
+      "id": "read_v0_plan",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/first-prototype-plan-v0.md"
+      }
+    },
+    {
+      "id": "read_v0_acceptance",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/v0-acceptance-criteria.md"
+      }
+    },
+    {
+      "id": "execution_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_v0_plan",
+        "read_v0_acceptance"
+      ],
+      "args": {
+        "query": "${inputs.topic}",
+        "sources": [
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/first-prototype-plan-v0.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/v0-acceptance-criteria.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/object-model-v0.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/policy-exfiltration-spec-v0.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/task-ownership-engine-v0.md"
+        ]
+      }
+    },
+    {
+      "id": "execution_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "execution_research_note"
+      ],
+      "args": {
+        "prompt": "Record that AgentFirst v0 execution is commitment-first, project-light, policy-governed, cardinality-agnostic for users, and staged through explicit ToolFlow breakpoints and acceptance gates. Note that Codex is recommended for bounded heavy implementation packages, not for freelancing core architecture."
+      }
+    }
+  ]
+}

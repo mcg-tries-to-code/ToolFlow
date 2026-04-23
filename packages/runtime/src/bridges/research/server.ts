@@ -1,0 +1,1 @@
+export { researchBridgeHandler } from "./handlers";

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "workspace-governance-monthly",
+  "description": "Run the bounded monthly workspace governance pass through the ToolFlow session lane.",
+  "inputs": {
+    "workspaceRoot": "/Users/jarvis/.openclaw/workspace",
+    "scriptPath": "/Users/jarvis/.openclaw/workspace/scripts/run_workspace_governance_monthly.sh",
+    "shellBin": "/bin/zsh"
+  },
+  "steps": [
+    {
+      "id": "workspace_governance_monthly",
+      "action": "workspace_governance_monthly",
+      "args": {
+        "workspaceRoot": "${inputs.workspaceRoot}",
+        "scriptPath": "${inputs.scriptPath}",
+        "shellBin": "${inputs.shellBin}"
+      }
+    }
+  ]
+}

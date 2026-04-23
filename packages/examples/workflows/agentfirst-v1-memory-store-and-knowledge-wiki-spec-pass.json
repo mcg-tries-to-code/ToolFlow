@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "agentfirst-v1-memory-store-and-knowledge-wiki-spec-pass",
+  "description": "Execution record for the repo-facing memory store and knowledge/wiki architecture spec pass.",
+  "inputs": {
+    "topic": "AgentFirst V1 Memory Store and Knowledge/Wiki Architecture Spec Pass"
+  },
+  "steps": [
+    {
+      "id": "read_architecture_package",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-memory-store-and-knowledge-wiki-architecture.md"
+      }
+    },
+    {
+      "id": "read_feature4_pause",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-feature4-lane-reset-and-memory-lifecycle-scaffolding.md"
+      }
+    },
+    {
+      "id": "read_chunk8_memory",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/Projects/agentfirst-v0/docs/v1-chunk8-memory-retrieval.md"
+      }
+    },
+    {
+      "id": "read_reconciliation",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/Projects/agentfirst-v0/docs/v1-requirements-reconciliation.md"
+      }
+    },
+    {
+      "id": "spec_pass_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_architecture_package",
+        "read_feature4_pause",
+        "read_chunk8_memory",
+        "read_reconciliation"
+      ],
+      "args": {
+        "query": "AgentFirst repo-facing spec pass for memory store, knowledge wiki, contract boundaries, and shared guidance layer",
+        "sources": [
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-memory-store-and-knowledge-wiki-architecture.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-feature4-lane-reset-and-memory-lifecycle-scaffolding.md",
+          "/Users/jarvis/Projects/agentfirst-v0/docs/v1-chunk8-memory-retrieval.md",
+          "/Users/jarvis/Projects/agentfirst-v0/docs/v1-requirements-reconciliation.md"
+        ]
+      }
+    },
+    {
+      "id": "spec_pass_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "spec_pass_research_note"
+      ],
+      "args": {
+        "prompt": "Record that the active next action is the repo-facing architecture/spec pass for memory store, knowledge/wiki, shared guidance, and their contracts, with Feature 4 implementation still paused pending this design pass."
+      }
+    }
+  ]
+}

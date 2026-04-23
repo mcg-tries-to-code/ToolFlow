@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "agentfirst-v1-operational-build-sequence",
+  "description": "Launch record for the ordered operational build sequence: onboarding, doctor, command surface, then lane/reset and memory lifecycle scaffolding.",
+  "inputs": {
+    "topic": "AgentFirst V1 Operational Build Sequence"
+  },
+  "steps": [
+    {
+      "id": "read_sequence_package",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-operational-build-sequence.md"
+      }
+    },
+    {
+      "id": "read_operational_package",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-operational-bootstrap-and-admin-surfaces.md"
+      }
+    },
+    {
+      "id": "read_feature1_package",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-feature1-onboarding-bootstrap.md"
+      }
+    },
+    {
+      "id": "sequence_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_sequence_package",
+        "read_operational_package",
+        "read_feature1_package"
+      ],
+      "args": {
+        "query": "AgentFirst ordered operational build sequence with Feature 1 onboarding first, followed by doctor, command surface, and lane plus memory lifecycle scaffolding",
+        "sources": [
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-operational-build-sequence.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-operational-bootstrap-and-admin-surfaces.md",
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-feature1-onboarding-bootstrap.md"
+        ]
+      }
+    },
+    {
+      "id": "sequence_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "sequence_research_note"
+      ],
+      "args": {
+        "prompt": "Record that the active operational execution order is Feature 1 onboarding/bootstrap, then Feature 2 doctor/bounded repair, then Feature 3 minimal command surface, then lane/reset plus memory lifecycle scaffolding."
+      }
+    }
+  ]
+}

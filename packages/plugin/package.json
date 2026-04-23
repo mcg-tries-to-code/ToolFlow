@@ -1,0 +1,16 @@
+{
+  "name": "@toolflow/plugin",
+  "version": "0.0.0",
+  "type": "commonjs",
+  "main": "dist/entry.js",
+  "types": "dist/entry.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@toolflow/runtime": "file:../runtime",
+    "@toolflow/shared": "file:../shared"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "toolflow",
+  "name": "ToolFlow",
+  "version": "0.0.0",
+  "description": "Thin bridge plugin for ToolFlow runtime."
+}

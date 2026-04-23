@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+.DS_Store
+.env
+*.log
+data/toolflow/runtime/
+data/ledger/
+data/taskflow-mirror/
+dist-release/

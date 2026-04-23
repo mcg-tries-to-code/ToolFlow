@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "toolflow.workflow/v1",
+  "name": "agentfirst-v1-feature4-lane-reset-and-memory-lifecycle-scaffolding",
+  "description": "Launch record for AgentFirst V1 Feature 4 lane/reset and memory lifecycle scaffolding.",
+  "inputs": {
+    "topic": "AgentFirst V1 Feature 4 Lane/Reset and Memory Lifecycle Scaffolding"
+  },
+  "steps": [
+    {
+      "id": "read_feature4_package",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-feature4-lane-reset-and-memory-lifecycle-scaffolding.md"
+      }
+    },
+    {
+      "id": "read_feature3_note",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/Projects/agentfirst-v0/docs/v1-feature3-minimal-command-surface.md"
+      }
+    },
+    {
+      "id": "read_chunk8_note",
+      "action": "read_file",
+      "args": {
+        "path": "/Users/jarvis/Projects/agentfirst-v0/docs/v1-chunk8-memory-retrieval.md"
+      }
+    },
+    {
+      "id": "feature4_research_note",
+      "action": "research_note",
+      "dependsOn": [
+        "read_feature4_package",
+        "read_feature3_note",
+        "read_chunk8_note"
+      ],
+      "args": {
+        "query": "AgentFirst Feature 4 lane reset and memory lifecycle scaffolding after Feature 3 command surface",
+        "sources": [
+          "/Users/jarvis/.openclaw/workspace/docs/jarvis-next/work-package-v1-feature4-lane-reset-and-memory-lifecycle-scaffolding.md",
+          "/Users/jarvis/Projects/agentfirst-v0/docs/v1-feature3-minimal-command-surface.md",
+          "/Users/jarvis/Projects/agentfirst-v0/docs/v1-chunk8-memory-retrieval.md"
+        ]
+      }
+    },
+    {
+      "id": "feature4_session_note",
+      "action": "session_note",
+      "dependsOn": [
+        "feature4_research_note"
+      ],
+      "args": {
+        "prompt": "Record that Feature 4 lane/reset and memory lifecycle scaffolding follows Feature 3 and is the next active implementation target in the operational build sequence."
+      }
+    }
+  ]
+}
